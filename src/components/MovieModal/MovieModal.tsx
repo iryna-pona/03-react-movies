@@ -34,10 +34,10 @@ export default function Modal({ movie, onClose }: ModalProps) {
     return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick}>
           <div className={css.modal} onClick={e => e.stopPropagation()}>
-                <button type="button" className={css.closeButton} onClick={onClose} aria-label="Close modal">
-                    &times
-                </button>
-              <img src={poster_path} className={css.image} alt={title} />
+          <button type="button" className={css.closeButton} onClick={onClose} aria-label="Close modal">
+            ×
+          </button>
+              <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} className={css.image} alt={movie.title} />
               <div className={css.content}>
                   <h2>{title}</h2>
                   <p>{overview}</p>
