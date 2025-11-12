@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import SearchBar from "../SearchBar/SearchBar";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import Modal from "../MovieModal/MovieModal";
@@ -19,9 +19,15 @@ export default function App() {
     setError(false);
     try {
       const data = await fetchMovies(query);
+
+      if (data.results.length === 0) {
+        toast("No movies found for your request.");
+      }
+
       setMovies(data.results);
     } catch {
       setError(true);
+      toast.error("An error occurred while searching. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -42,4 +48,3 @@ export default function App() {
     </>
   );
 }
-
